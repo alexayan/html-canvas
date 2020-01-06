@@ -60,7 +60,7 @@ margin，margin-left，margin-top，margin-right，margin-bottom，padding，pad
 
 一个工具库，将 style 样式应用到 html 行内样式。
 
-(html-style)[https://github.com/alexayan/html-style]
+[html-style](https://github.com/alexayan/html-style))
 
 ## demo
 
