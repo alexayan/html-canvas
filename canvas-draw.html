@@ -1,8 +1,3 @@
-import {Node, Canvas} from '../../components/index';
-
-const systemInfo = wx.getSystemInfoSync();
-
-const demo = `
 <div style="line-height: 1.5; background-color: #f1f1f1; padding: 30px 20px;  box-sizing: border-box;">
   <img style="display: block; width: 50px; border-radius: 25px; margin: 0px auto;" src="https://thirdwx.qlogo.cn/mmopen/vi_32/XlDTibpygpfmrTjIs97A4qXOAN91HHFuDQHo0uP3fBeibciaUSdTrXspC5C42oMD8fIiasb5RD72d4QxsL3AFiclBQg/132"/>
   <div style="font-size: 18px; text-align: center; margin-top: 20px; color: rgba(0, 0, 0, 0.9);">author: alexayan</div>
@@ -41,39 +36,4 @@ const demo = `
     <div style="color: rgba(0, 0, 0, 0.9); margin-bottom: 10px; padding-bottom: 5px; border-bottom: 2px solid #eaecef;">已支持的 CSS 属性</div>
     margin，margin-left，margin-top，margin-right，margin-bottom，padding，padding-left，padding-top，padding-right，padding-bottom，width，height，border，border-left，border-top，border-right，border-bottom，border-width，border-style，border-color，border-left-style，border-left-color，border-left-width，border-top-style，border-top-color，border-top-width，border-right-style，border-right-color，border-right-width，border-bottom-style，border-bottom-color，border-bottom-width，color，display，background-color，border-radius，border-top-left-radius，border-top-right-radius，border-bottom-left-radius，border-bottom-right-radius，box-sizing，font，font-style，font-variant，font-weight，font-stretch，font-size，line-height，font-family，text-align，position，overflow，overflow-x，overflow-y，top，left，right，bottom，z-index
   </div>
-</div>`;
-
-Page({
-  data: {
-    canvasStyle: `width: ${systemInfo.screenWidth}px; height: ${systemInfo.screenHeight}px;`
-  },
-
-  onReady() {
-    const ctx = wx.createCanvasContext('canvas');
-    const canvas = new Canvas(ctx);
-    const tree = Node.fromHtml(demo);
-    tree.setStyle('width', `${systemInfo.screenWidth}px`)
-    // eslint-disable-next-line promise/catch-or-return
-    tree.layout(ctx).then(() => {
-      this.setData({
-        canvasStyle: `width: ${systemInfo.screenWidth}px; height: ${tree.boxHeight().value()}px;`
-      })
-      canvas.draw(tree, false, () => {
-        wx.canvasToTempFilePath({
-          x: 0,
-          y: 0,
-          width: tree.boxWidth().value(),
-          height: tree.boxHeight().value(),
-          canvasId: 'canvas',
-          success(res) {
-            console.log(res);
-            // wx.saveImageToPhotosAlbum({
-            //   filePath: res.tempFilePath,
-            //   success(res) { }
-            // })
-          }
-        })
-      });
-    });
-  }
-});
+</div>

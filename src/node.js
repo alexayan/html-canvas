@@ -297,6 +297,11 @@ export default class Node {
     };
   }
 
+  setStyle(name, value) {
+    this.props.style[name] = value;
+    this.style(name, value);
+  }
+
   style(name, value) {
     if (typeof name === "object") {
       forIn(name, (v, k) => {
@@ -633,6 +638,10 @@ export default class Node {
       return false;
     }, false);
     return node;
+  }
+
+  boxWidth() {
+    return this._boxWidth();
   }
 
   _boxWidth(skipContent) {
