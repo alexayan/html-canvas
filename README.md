@@ -44,17 +44,23 @@ tree.layout(ctx).then(() => {
 
 ## 待支持的 CSS 属性
 
-- [] flex
-- [] flex-basis
-- [] flex-direction
-- [] flex-flow
-- [] flex-grow
-- [] flex-shrink
-- [] flex-wrap
+- [ ] flex
+- [ ] flex-basis
+- [ ] flex-direction
+- [ ] flex-flow
+- [ ] flex-grow
+- [ ] flex-shrink
+- [ ] flex-wrap
 
 ## 已支持的 CSS 属性
 
 margin，margin-left，margin-top，margin-right，margin-bottom，padding，padding-left，padding-top，padding-right，padding-bottom，width，height，border，border-left，border-top，border-right，border-bottom，border-width，border-style，border-color，border-left-style，border-left-color，border-left-width，border-top-style，border-top-color，border-top-width，border-right-style，border-right-color，border-right-width，border-bottom-style，border-bottom-color，border-bottom-width，color，display，background-color，border-radius，border-top-left-radius，border-top-right-radius，border-bottom-left-radius，border-bottom-right-radius，box-sizing，font，font-style，font-variant，font-weight，font-stretch，font-size，line-height，font-family，text-align，position，overflow，overflow-x，overflow-y，top，left，right，bottom，z-index
+
+## style html
+
+一个工具库，将 style 样式应用到 html 行内样式。
+
+(html-style)[https://github.com/alexayan/html-style]
 
 ## demo
 
