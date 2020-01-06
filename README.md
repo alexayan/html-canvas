@@ -6,6 +6,14 @@
 
 构建虚拟DOM 树，依据 CSS 规范计算样式，使用 CSS 盒模型对 DOM 进行布局，计算出所有元素的位置。最后将 DOM 树通过 Canvas Api 进行绘制。
 
+## 小程序开发工具内运行 demo
+
+``` bash
+git clone https://github.com/alexayan/html-canvas.git
+npm i
+npm run watch
+```
+
 ## 小程序内使用
 
 `npm install --save html-canvas`
