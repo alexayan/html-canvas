@@ -45,12 +45,10 @@ tree
     nodeCanvas = NodeCanvas.createCanvas(canvasWidth, tree.boxHeight().value());
     ctx = nodeCanvas.getContext("2d");
     const canvas = new HtmlCanvas.Canvas(ctx);
-
-    canvas.draw(tree, false, () => {
-      const stream = nodeCanvas.createPNGStream()
-      stream.pipe(out)
-      out.on('finish', () => console.log('The png file was created.'))
-    });
+    canvas.draw(tree);
+    const stream = nodeCanvas.createPNGStream()
+    stream.pipe(out)
+    out.on('finish', () => console.log('The png file was created.'))
   })
   .catch(e => {
     console.error(e);

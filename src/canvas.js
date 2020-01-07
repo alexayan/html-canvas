@@ -8,7 +8,7 @@ export default class Canvas {
     this.ctx = ctx;
   }
 
-  draw(node, reserve, func, isChild) {
+  draw(node) {
     if (!node) {
       return;
     }
@@ -41,17 +41,6 @@ export default class Canvas {
       ctx.restore();
     }
     ctx.restore();
-    if (!isChild) {
-      console.log("draw node to canvas", node);
-      func = func || function noop() {};
-      setTimeout(() => {
-        if (ctx.draw) {
-          ctx.draw(reserve, func)
-        } else {
-          func();
-        }
-      }, 250);
-    }
   }
 
   drawNodeImage(node, pos) {

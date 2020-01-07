@@ -58,7 +58,8 @@ Page({
       this.setData({
         canvasStyle: `width: ${systemInfo.screenWidth}px; height: ${tree.boxHeight().value()}px;`
       })
-      canvas.draw(tree, false, () => {
+      canvas.draw(tree);
+      ctx.draw(false, () => {
         wx.canvasToTempFilePath({
           x: 0,
           y: 0,
@@ -67,13 +68,9 @@ Page({
           canvasId: 'canvas',
           success(res) {
             console.log(res);
-            // wx.saveImageToPhotosAlbum({
-            //   filePath: res.tempFilePath,
-            //   success(res) { }
-            // })
           }
         })
-      });
+      })
     });
   }
 });
