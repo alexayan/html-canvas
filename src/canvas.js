@@ -45,8 +45,12 @@ export default class Canvas {
       console.log("draw node to canvas", node);
       func = func || function noop() {};
       setTimeout(() => {
-        ctx.draw(reserve, func);
-      }, 500);
+        if (ctx.draw) {
+          ctx.draw(reserve, func)
+        } else {
+          func();
+        }
+      }, 250);
     }
   }
 
@@ -70,7 +74,7 @@ export default class Canvas {
       )
       .value();
     ctx.drawImage(
-      node._resource.path,
+      typeof wx !== "undefined" ? node._resource.src : node._resource,
       0,
       0,
       node._resource.width,
@@ -99,8 +103,8 @@ export default class Canvas {
     if (textAlign === "right") {
       left += width;
     }
-    ctx.setTextAlign(textAlign);
-    ctx.setTextBaseline("top");
+    ctx.textAlign = textAlign;
+    ctx.textBaseline = "top";
     ctx.font = stringifyFont(font);
     ctx.fillStyle = color;
     ctx.fillText(node.text, left, top);

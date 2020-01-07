@@ -1,0 +1,91 @@
+.container {
+  line-height: 1.5;
+  background-color: #f1f1f1;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+.container img {
+  display: block;
+  width: 50px;
+  border-radius: 25px;
+  margin: 0px auto;
+}
+
+.user {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.intro {
+  margin: 20px 10px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.implementation,
+.compatibility {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.implementation div:first-child,
+.compatibility div:first-child {
+  display: inline-block;
+  width: 35%;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.implementation div:last-child,
+.compatibility div:last-child {
+  display: inline-block;
+  width: 64%;
+  padding-left: 15px;
+  box-sizing: border-box;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.implementation span,
+.compatibility span {
+  font-weight: bold;
+  margin: 0px 4px;
+  font-style: italic;
+  border-bottom: 1px dashed #aaaaaa;
+  height: 19px;
+}
+
+.block {
+  margin: 20px 10px;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.block .header {
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #eaecef;
+}
+
+.todo-css .list {
+  padding-left: 15px;
+}
+
+.todo-css .list div {
+  position: relative;
+}
+
+.todo-css .list div span {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #aaaaaa;
+  top: 5px;
+  left: -15px;
+  border-radius: 2.5px;
+}
+

@@ -403,29 +403,41 @@ export default class Node {
     });
   }
 
+  wxLoadImage(src) {
+    return new Promise((resolve, reject) => {
+      wx.getImageInfo({
+        src,
+        success: (res) => {
+          res.src = res.path;
+          resolve(res);
+        },
+        fail: (e) => {
+          reject(e);
+        }
+      })
+    })
+  }
+
+  loadImage(src) {
+    if (typeof wx !== 'undefined') {
+      return this.wxLoadImage(src);
+    }
+    throw new Error('node.loadImage() not implement')
+  }
+
   loadResource() {
     const tasks = [];
     this.trevel((node) => {
       if (node.nodeName === "img" && node.props.src && !node._resource) {
         tasks.push({
-          opt: 'download',
+          type: 'img',
           src: node.props.src,
           node
         })
       }
     }, true);
     return Promise.all(tasks.map((task) => {
-      return new Promise((resolve, reject) => {
-        wx.getImageInfo({
-          src: task.src,
-          success: (res) => {
-            resolve(res);
-          },
-          fail: (e) => {
-            reject(e);
-          }
-        })
-      })
+      return this.loadImage(task.src);
     })).then((results) => {
       results.forEach((res, index) => {
         tasks[index].node._resource = res;

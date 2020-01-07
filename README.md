@@ -16,30 +16,27 @@ npm run watch
 
 ## 小程序内使用
 
-`npm install --save html-canvas`
+[example](./tools/demo/pages/index/index.js)
 
-```javascript
-import {Node, Canvas} from 'html-canvas';
-const ctx = wx.createCanvasContext('canvas');
-const canvas = new Canvas(ctx);
-const tree = Node.fromHtml(htmlstr);
-tree.layout(ctx).then(() => {
-  this.setData({
-    canvasStyle: `width: ${tree.boxWidth().value()}px; height: ${tree.boxHeight().value()}px;`
+## Node 环境中使用
+
+[example](./example/node/index.js)
+
+`html-canvas` 默认环境为小程序环境，其他环境中使用需要添加图片加载函数 `loadImage` 到 Node 类上, 返回的图片对象 `image` 会通过 `ctx.drawImage(image)` 画到 canvas 上
+
+```
+Node.prototype.loadImage = function (src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => {
+      resolve(img);
+    }
+    img.onerror = err => {
+      reject(err);
+    }
+    img.src = src;
   })
-  canvas.draw(tree, false, () => {
-    wx.canvasToTempFilePath({
-      x: 0,
-      y: 0,
-      width: tree.boxWidth().value(),
-      height: tree.boxHeight().value(),
-      canvasId: 'canvas',
-      success(res) {
-        console.log(res);
-      }
-    })
-  });
-});
+}
 ```
 
 ## 待支持的 CSS 属性
@@ -58,9 +55,10 @@ margin，margin-left，margin-top，margin-right，margin-bottom，padding，pad
 
 ## style html
 
-一个工具库，将 style 样式应用到 html 行内样式。
+一个工具库，将 style 样式文件应用到 html 行内样式。
 
-[html-style](https://github.com/alexayan/html-style))
+[html-style](https://github.com/alexayan/html-style)
+[example](./tools/demo/pages/index/index.js)
 
 ## demo
 
