@@ -250,14 +250,14 @@ export default class Node {
       // eslint-disable-next-line no-empty
       if (top.isAbsolute()) {
       } else if (bottom.isAbsolute() && relativeNode) {
-        top = relativeNode.style("height").minus(bottom.plus(this._boxHeight()));
+        top = relativeNode.boxHeight().minus(bottom.plus(this._boxHeight()));
       } else {
         top = new CssValue("0px");
       }
       // eslint-disable-next-line no-empty
       if (left.isAbsolute()) {
       } else if (right.isAbsolute()) {
-        left = relativeNode.style("width").minus(right.plus(this._boxWidth()));
+        left = relativeNode.boxWidth().minus(right.plus(this._boxWidth()));
       } else {
         left = new CssValue("0px");
       }
@@ -272,23 +272,27 @@ export default class Node {
   rootPosition() {
     let top = new CssValue("0px");
     let left = new CssValue("0px");
+    let position = this.style('position').value();
     let parentNode = this._relativeNode();
     const relativePos = this.relativePostion();
     top = top.plus(relativePos.top);
     left = left.plus(relativePos.left);
     while (parentNode) {
       const box = parentNode._box;
-      top = box.border.top.width
-        .plus(box.margin.top)
-        .plus(box.padding.top)
-        .plus(top);
-      left = box.border.left.width
-        .plus(box.margin.left)
-        .plus(box.padding.left)
-        .plus(left);
+      if (position !== 'absolute' && position !== 'fixed') {
+        top = box.border.top.width
+          .plus(box.margin.top)
+          .plus(box.padding.top)
+          .plus(top);
+        left = box.border.left.width
+          .plus(box.margin.left)
+          .plus(box.padding.left)
+          .plus(left);
+      }
       const relativePos = parentNode.relativePostion();
       top = top.plus(relativePos.top);
       left = left.plus(relativePos.left);
+      position = parentNode.style('position').value();
       parentNode = parentNode._relativeNode();
     }
     return {
@@ -450,7 +454,7 @@ export default class Node {
     if (this.isTextNode()) {
       return;
     }
-
+    this._absolutes = [];
     const isBlockNode = this._isBlockNode();
     const boxSizing = this.style("box-sizing").value();
     const originWidth = this.props.style.width || "";
@@ -587,7 +591,6 @@ export default class Node {
     });
 
     this._flows = new Flows(this);
-    this._absolutes = [];
     this.childNodes.forEach(node => {
       const position = node.style("position").value();
       if (
