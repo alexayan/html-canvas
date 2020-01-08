@@ -8,6 +8,8 @@
 
 ## 小程序开发工具内运行 demo
 
+[小程序代码片段：https://developers.weixin.qq.com/s/9zFHKdmh7De2](https://developers.weixin.qq.com/s/9zFHKdmh7De2)
+
 ``` bash
 git clone https://github.com/alexayan/html-canvas.git
 npm i
