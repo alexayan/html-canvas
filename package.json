@@ -7,6 +7,7 @@
     "dev": "gulp dev --develop",
     "watch": "gulp watch --develop --watch",
     "build": "gulp",
+    "build:web": "./node_modules/.bin/webpack",
     "dist": "npm run build",
     "clean-dev": "gulp clean --develop",
     "clean": "gulp clean",
@@ -28,13 +29,11 @@
       "src"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
+  "repository": "https://github.com/alexayan/html-canvas",
   "author": "alexayan",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.7.7",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-module-resolver": "^3.2.0",
@@ -59,7 +58,8 @@
     "miniprogram-simulate": "^1.0.0",
     "through2": "^2.0.3",
     "vinyl": "^2.2.0",
-    "webpack": "^4.29.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
